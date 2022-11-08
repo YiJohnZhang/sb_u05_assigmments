@@ -40,6 +40,8 @@ class ProtoLinkedList{
 
 	}
 
+	
+
 	/** dequeue(): remove the node from the start of the prototype linked list.
 	 * and return its value. Springboard specifies it should throw an error if the prototype linked list is empty. */
 	shift(){
