@@ -1,4 +1,4 @@
-const Queue = require("./queue");
+const Queue = require("../queue");
 
 let queue;
 
@@ -9,14 +9,14 @@ beforeEach(function() {
 describe("enqueue", function() {
   it("places the value at the end of the queue and returns undefined", function() {
     expect(queue.enqueue(10)).toBe(undefined);
-    expect(queue.first.val).toBe(10);
-    expect(queue.last.val).toBe(10);
+    expect(queue.headNode.value).toBe(10);
+    expect(queue.tailNode.value).toBe(10);
     queue.enqueue(100);
-    expect(queue.first.val).toBe(10);
-    expect(queue.last.val).toBe(100);
+    expect(queue.headNode.value).toBe(10);
+    expect(queue.tailNode.value).toBe(100);
     queue.enqueue(1000);
-    expect(queue.first.val).toBe(10);
-    expect(queue.last.val).toBe(1000);
+    expect(queue.headNode.value).toBe(10);
+    expect(queue.tailNode.value).toBe(1000);
   });
 });
 

@@ -3,16 +3,26 @@ class Node{
 	constructor(value) {
 
 		this.value = value;
-		this.next = next;
+		this.next = null;
 
 	}
 
 }
 
-/**	ProtoLinkedList
+class BidirectionalNode{
+
+	constructor(value) {
+		this.value = value;
+		this.previous = null;
+		this.next = null;
+	}
+
+}
+
+/**	LinkedListPrototype
  *	A prototype linked list with more limited behaviors.
 */
-class ProtoLinkedList{
+class LinkedListPrototype{
 
 	constructor(){
 	
@@ -40,9 +50,26 @@ class ProtoLinkedList{
 
 	}
 
-	
+	/** unshift(value): add new value to the start of the prototype linked list. Returns undefined. */
+	unshift(value){
 
-	/** dequeue(): remove the node from the start of the prototype linked list.
+		let newNode = new Node(value);
+
+		const currentHeadNode = this.headNode;
+		newNode.next = currentHeadNode;
+		
+		this.headNode = newNode;
+
+		if(this.isEmpty())
+			this.tailNode = this.headNode;
+
+		this.size++;
+
+		return;
+
+	}
+
+	/** shift(): remove the node from the start of the prototype linked list.
 	 * and return its value. Springboard specifies it should throw an error if the prototype linked list is empty. */
 	shift(){
 
@@ -57,22 +84,10 @@ class ProtoLinkedList{
 
 	}
 
-
-	pop(){
-
-		this.throwErrorIfEmpty();
-
-		const poppedTailNode = this.tailNode;
-		this.
-
-
-
-	}
-
-	/** peek(): return the next value to remove without removing it from the linked list */
+	/** peek(): return the next value to remove without removing it from the prototype linked list */
 	peek(){
-
-		throw new Error('The method \'peek()\' must be implemented.')
+		
+		return this.headNode.value;
 
 	}
 
@@ -95,12 +110,53 @@ class ProtoLinkedList{
 
 }
 
-class BidirectionalNode{
+/**	LinkedListPrototype
+ *	A prototype doubly linked list with more limited behaviors.
+*/
+class DoublyLinkedListPrototype extends LinkedList{
 
-	constructor(value) {
-		this.value = value;
-		this.previous = null;
-		this.next = null;
+	constructor(){
+		super();
+	}
+
+	/** push(value): add new value to the end of the prototype linked list. Returns undefined. */
+	push(value){
+
+		let newNode = new BidirectionalNode(value);
+
+		if(this.isEmpty()){
+			this.headNode = newNode;
+		}else{
+			newNode.previous = this.tailNode;
+			this.tailNode.next = newNode;
+		}
+
+		this.tailNode = newNode;
+		this.size++;
+
+		return;
+
+	}
+
+	/** unshift(value): add new value to the start of the prototype linked list. Returns undefined. */
+	unshift(value){
+
+		let newNode = new BidirectionalNode(value);
+
+		const currentHeadNode = this.headNode;
+		newNode.next = currentHeadNode;
+		newNode.next.previous = newNode;
+			// set the `previous` property of `currentHeadNode` without modifying newNode in case if it is a superficial copy
+
+		this.headNode = newNode;
+
+		if(this.isEmpty())
+			this.tailNode = this.headNode;
+
+		this.size++;
+
+		return;
+
 	}
 
 }
@@ -108,5 +164,6 @@ class BidirectionalNode{
 module.exports = {
 	Node,
 	BidirectionalNode,
-	ProtoLinkedList
+	LinkedListPrototype,
+	DoublyLinkedListPrototype
 }

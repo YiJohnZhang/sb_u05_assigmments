@@ -1,9 +1,9 @@
-const {ProtoLinkedList} = require('./linkedList')
+const {LinkedListPrototype} = require('./linkedList')
 
 /** Queue: chained-together nodes where you can
  *	remove from the front or add to the back. */
 
-class Queue extends ProtoLinkedList{
+class Queue extends LinkedListPrototype{
 
 	constructor() {
 
@@ -22,14 +22,11 @@ class Queue extends ProtoLinkedList{
 		return this.shift();
 	}
 
-	/** peek(): return the value of the first node in the queue. */
-
-	peek() {
-
+	//	disable stack method ("unshift") from prototype
+	unshift(){
+		throw new Error(`this object of type \`${this.prototype}\` does not implement \'unshift()\'`);
 	}
-
-	//disable stack methods (pop)
-
+	
 }
 
 module.exports = Queue;

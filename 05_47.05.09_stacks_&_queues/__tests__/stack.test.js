@@ -1,4 +1,4 @@
-const Stack = require("./stack");
+const Stack = require("../stack");
 
 let stack;
 
@@ -9,14 +9,14 @@ beforeEach(function() {
 describe("push", function() {
   it("places the value at the top of the stack and returns undefined", function() {
     expect(stack.push(10)).toBe(undefined);
-    expect(stack.first.val).toBe(10);
-    expect(stack.last.val).toBe(10);
+    expect(stack.headNode.value).toBe(10);
+    expect(stack.tailNode.value).toBe(10);
     stack.push(100);
-    expect(stack.first.val).toBe(100);
-    expect(stack.last.val).toBe(10);
+    expect(stack.headNode.value).toBe(100);
+    expect(stack.tailNode.value).toBe(10);
     stack.push(1000);
-    expect(stack.first.val).toBe(1000);
-    expect(stack.last.val).toBe(10);
+    expect(stack.headNode.value).toBe(1000);
+    expect(stack.tailNode.value).toBe(10);
   });
 });
 
