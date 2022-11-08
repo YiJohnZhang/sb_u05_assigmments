@@ -7,7 +7,7 @@ const {
   revString,
   gatherStrings,
   binarySearch
-} = require("./recursion");
+} = require("../recursion");
 
 describe("product", function() {
   it("returns the product of all numbers in an array", function() {
