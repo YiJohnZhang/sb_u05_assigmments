@@ -1,46 +1,30 @@
-/** Node: node for a stack. */
-
-class Node {
-  constructor(val) {
-    this.val = val;
-    this.next = null;
-  }
-}
+const {ProtoLinkedList} = require('./linkedList')
 
 /** Stack: chained-together nodes where you can
- *  remove from the top or add to the top. */
+ *	remove from the top or add to the top. */
 
-class Stack {
-  constructor() {
-    this.first = null;
-    this.last = null;
-    this.size = 0;
-  }
+class Stack extends ProtoLinkedList{
 
-  /** push(val): add new value to end of the stack. Returns undefined. */
+	constructor() {
 
-  push(val) {
+		super();
 
-  }
+	}
 
-  /** pop(): remove the node from the top of the stack
-   * and return its value. Should throw an error if the stack is empty. */
+	/** pop(): remove the node from the top of the stack
+	 * and return its value. Should throw an error if the stack is empty. */
 
-  pop() {
+	pop() {
 
-  }
+	}
 
-  /** peek(): return the value of the first node in the stack. */
+	/** peek(): return the value of the first node in the stack. */
 
-  peek() {
+	peek() {
 
-  }
+	}
 
-  /** isEmpty(): return true if the stack is empty, otherwise false */
-
-  isEmpty() {
-
-  }
+	//disable queue methods (shift)
 }
 
 module.exports = Stack;
