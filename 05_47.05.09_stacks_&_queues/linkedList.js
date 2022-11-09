@@ -116,7 +116,7 @@ class LinkedListPrototype{
 /**	DoublyLinkedListPrototype
  *	A prototype doubly linked list with more limited behaviors.
 */
-class DoublyLinkedListPrototype extends LinkedList{
+class DoublyLinkedListPrototype extends LinkedListPrototype{
 
 	constructor(){
 		super();
