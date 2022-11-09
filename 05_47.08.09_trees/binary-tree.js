@@ -1,4 +1,9 @@
 /** BinaryTreeNode: node for a general tree. */
+// going to purposefully re-implement DFS/BFS/traversal for practice
+
+const Queue = require('./helpers_05_47.05.09_stacks_&_queues/queue');
+const Stack = require('./helpers_05_47.05.09_stacks_&_queues/stack');
+
 
 class BinaryTreeNode {
   constructor(val, left = null, right = null) {
@@ -18,6 +23,14 @@ class BinaryTree {
 
   minDepth() {
 
+	// going to re-implement DFS for practice. note the binary tree is NOT balanced.
+	if(this.root === null)
+		return null;
+		// handle empty tree
+
+	
+
+
   }
 
   /** maxDepth(): return the maximum depth of the tree -- that is,
@@ -25,12 +38,26 @@ class BinaryTree {
 
   maxDepth() {
 
+	// going to purposefully re-implement DFS/ for practice  note the binary tree is NOT balanced.
+	// given a really inbalacned tree... I can think of it like: if I pop something off from the stack it is -1 depth. I will init maxTreeDepth at 0, when it hits "undefined", save the depth; t
+		// ok so first it keeps adding as the call stack is popped; however, after it hits the first undefined, start subtrac
+		// wait that doesn towrk.
+		//OH what if I push the child values onto an array...? then traverse it on an array?
+
   }
 
   /** maxSum(): return the maximum sum you can obtain by traveling along a path in the tree.
    * The path doesn't need to start at the root, but you can't visit a node more than once. */
 
   maxSum() {
+	
+	// interesting: no node is < 0 or non-number that simplifies the algo
+	// going to purposefully re-implement DFS/BFS/traversal for practice
+	
+
+
+	
+
 
   }
 
@@ -38,6 +65,43 @@ class BinaryTree {
    * which is larger than lowerBound. Return null if no such value exists. */
 
   nextLarger(lowerBound) {
+	
+	if(this.root === null)
+		return null;
+		// handle empty tree
+
+	// going to purposefully re-implement DFS for practice
+
+	let nextLargerValue = lowerBound;
+		// find the minimum that is larger than lowerBound
+
+	let toVisitQueue = new Queue();
+	toVisitQueue.enqueue(this.root);
+		// I could optimize the Queue class so it can initialize with one or more elements; later.
+	
+	while(toVisitQueue.size > 0){
+
+		const currentNode = toVisitQueue.dequeue();
+
+		if(currentNode.left)
+			toVisitQueue.enqueue(currentNode.left);
+		
+		if(currentNode.right)
+			toVisitQueue.enqueue(currentNode.right);
+
+		const currentNodeValue = currentNode.val;
+
+		if(nextLargerValue === lowerBound && currentNodeValue > lowerBound)
+			nextLargerValue = currentNodeValue;
+			// fail fast when a smaller number is found
+		
+		if(currentNodeValue > lowerBound && currentNodeValue < nextLargerValue)
+			nextLargerValue = currentNodeValue;
+			// fail fast now after nextLargeValue != lowerBound
+
+	}
+
+	return nextLargerValue === lowerBound ? null : nextLargerValue;
 
   }
 
