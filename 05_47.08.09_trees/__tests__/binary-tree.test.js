@@ -98,7 +98,7 @@ describe("nextLarger", function() {
     expect(largeTree.nextLarger(6)).toBe(null);
   });
 });
-
+/*
 describe("areCousins", function() {
   it("returns true if they are cousins, false if not", function() {
     let n7 = new BinaryTreeNode(7);
@@ -187,7 +187,7 @@ describe("lowestCommonAncestor", function() {
     const tree = new BinaryTree(root);
 
     /* build left subtree */
-
+/*
     const left = new BinaryTreeNode(5);
     root.left = left;
 
@@ -204,7 +204,7 @@ describe("lowestCommonAncestor", function() {
     leftRight.right = leftRightRight;
 
     /* build right subtree */
-
+/*
     const right = new BinaryTreeNode(1);
     root.right = right;
 
@@ -220,3 +220,4 @@ describe("lowestCommonAncestor", function() {
     expect(tree.lowestCommonAncestor(right_left, right_right)).toBe(right);
   });
 });
+*/
