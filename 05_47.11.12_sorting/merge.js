@@ -46,7 +46,7 @@ function mergeSort(inputArray) {
 		//	however, the function only takes 1 parameter...
 
 	// do i have to simultaneously break up the or can I do bite-sized chunks i.e. sort[2, 5] = [2,5] then sort [1,0] = [0, 1] then merge [0, 1, 2, 5]?
-
+	
 
 
 }
