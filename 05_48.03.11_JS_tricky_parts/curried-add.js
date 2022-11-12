@@ -16,14 +16,33 @@
 
 // }
 
-const curriedAdd = ((total) => {
+// const curriedAdd = ((total) => {
 
+// 	total = Number(total) || 0;
+
+// 	total = total + total;
+
+// 	return total;
+
+// })();
+
+function curriedAdd(total) {
+
+	if(total === undefined)
+		return 0;
+	
 	total = Number(total) || 0;
 
-	total = total + total;
+	return function add(nextNumber){
 
-	return total;
+		if(nextNumber === undefined)
+			return total;
+		
+		total = total + nextNumber;
+		return add;
 
-})();
+	}
+
+}
 
 module.exports = { curriedAdd };
