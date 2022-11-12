@@ -2,7 +2,14 @@ function merge(sortedArray1, sortedArray2) {
 
 	let mergedArray = [];
 
-	if(sortedArray2[0] === undefined)
+	if(typeof sortedArray1 === 'number' && typeof sortedArray2 === 'number')
+		return sortedArray1 < sortedArray2 ? new Array(sortedArray1, sortedArray2) : new Array(sortedArray2, sortedArray1);
+		// handle my trollish I am not splitting up the array implementation.
+	
+	if(sortedArray1 === undefined && sortedArray2 === undefined)
+		return;
+
+	if(sortedArray2 === undefined || sortedArray2[0] === undefined)
 		return sortedArray1;
 
 	function _merge(i = 0, j = 0){
@@ -47,8 +54,58 @@ function mergeSort(inputArray) {
 
 	// do i have to simultaneously break up the or can I do bite-sized chunks i.e. sort[2, 5] = [2,5] then sort [1,0] = [0, 1] then merge [0, 1, 2, 5]?
 	
+	// maybe mergeSort(input[0:mid]); basically make a call tree?
 
+	// let splitArray = [];
+
+	// function _mergeSplit(inputArray){
+
+	// 	if (inputArray.length < 2)
+	// 		splitArray.push()
+
+	// }
+	// const middleCeiling = Math.ceil(inputArray.length/2);
+	// 	// because if it is a one-element array, the first array will be undefined; ceil guarantees the second array to be undefined for my implementation of `merge()`
+
+	// return mergeSort(inputArray.slice(0, middleCeiling)
+
+	// do I really need to go through the "splitting" formality? why not just merge each index?
+
+	let splitArray = [];
+
+	for(let i=0; i < inputArray.length; i+=2){
+	// for(let i=0; i<Math.ceil(inputArray.length/2); i++){
+
+		splitArray.push(merge(inputArray[i], inputArray[i+1]));
+
+	}
+	console.log(splitArray);
+
+	function _mergeArray(){
+
+		if(splitArray.length === 1)
+			return splitArray;
+
+		let tempSplitArray = [];
+		
+		for(let i=0; i<splitArray.length; i+=2)
+			tempSplitArray.push(merge(splitArray[i], splitArray[i+1]));
+		// for(let i=0; i<Math.ceil(splitArray.length/2); i++)
+			// later: integrate the above code somehow into this block.
+		
+		splitArray = tempSplitArray;
+
+		return _mergeArray();
+
+	}
+
+	_mergeArray();
+	console.log(splitArray);
+
+	return splitArray[0];
+
+	// I think there is some space complexity improvement: I instead have O(max(log(N)-1, 1)) array creations instead of O(log(N)) by avoiding the first fragment.
 
 }
 
-module.exports = { merge, mergeSort};
+module.exports = { merge, mergeSort };
