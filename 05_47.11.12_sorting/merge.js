@@ -6,8 +6,10 @@ function merge(sortedArray1, sortedArray2) {
 		return sortedArray1 < sortedArray2 ? new Array(sortedArray1, sortedArray2) : new Array(sortedArray2, sortedArray1);
 		// handle my trollish I am not splitting up the array implementation.
 	
-	if(sortedArray1 === undefined && sortedArray2 === undefined)
-		return;
+	if(typeof sortedArray1 === 'number' && sortedArray2 === undefined){
+		const constArray = [sortedArray1];
+		return constArray;
+	}
 
 	if(sortedArray2 === undefined || sortedArray2[0] === undefined)
 		return sortedArray1;
@@ -70,6 +72,8 @@ function mergeSort(inputArray) {
 	// return mergeSort(inputArray.slice(0, middleCeiling)
 
 	// do I really need to go through the "splitting" formality? why not just merge each index?
+	if(inputArray.length < 1)
+		return inputArray;
 
 	let splitArray = [];
 
@@ -79,7 +83,6 @@ function mergeSort(inputArray) {
 		splitArray.push(merge(inputArray[i], inputArray[i+1]));
 
 	}
-	console.log(splitArray);
 
 	function _mergeArray(){
 
@@ -88,11 +91,13 @@ function mergeSort(inputArray) {
 
 		let tempSplitArray = [];
 		
-		for(let i=0; i<splitArray.length; i+=2)
+		for(let i=0; i<splitArray.length; i+=2){
 			tempSplitArray.push(merge(splitArray[i], splitArray[i+1]));
 		// for(let i=0; i<Math.ceil(splitArray.length/2); i++)
 			// later: integrate the above code somehow into this block.
-		
+			// console.log(merge(splitArray[i], splitArray[i+1]))
+			// oh i getit, it I think it can never reduce it?
+		}
 		splitArray = tempSplitArray;
 
 		return _mergeArray();
@@ -100,7 +105,7 @@ function mergeSort(inputArray) {
 	}
 
 	_mergeArray();
-	console.log(splitArray);
+	// console.log(splitArray);
 
 	return splitArray[0];
 
