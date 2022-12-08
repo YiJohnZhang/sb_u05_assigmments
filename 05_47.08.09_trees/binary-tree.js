@@ -120,39 +120,7 @@ class BinaryTree {
 	if(this.root === null)
 		return 0;
 
-	// basically find a linked list or sub-tree that yields the maximum sum; if the root is negative, even then it may provide access between the left and right childs.
-	// therefore => push it as an array and traverse it. figure out a formula for the children when we get there.
-
-	function mutateTraverse(currentNode, level){
-		
-		if(currentNode.left)
-			mutateTraverse(currentNode.left, level+1);
-		
-		if(currentNode.right)
-			mutateTraverse(currentNode.right, level+1);
-		
-		
-		if(currentNode.left === currentNode.right && currentNode.left === null && currentNode.val <= 0)
-			currentNode.val = 0;
-
-	}
-
-	// mutate tree
-	mutateTraverse(this.root, 0);
-
-	function traverse(currentNode){
-		let sumLeft;
-		let sumRight;
-
-		if(currentNode.left)
-			sumLeft = traverse(currentNode.left)
-		if(currentNode.right)
-			sumRight = traverse(currentNode.right);
-		return Math.max(sumLeft + currentNode.val, sumRight + currentNode.val)
-
-	}
 	
-	return traverse(this.root);
 
   }
 
