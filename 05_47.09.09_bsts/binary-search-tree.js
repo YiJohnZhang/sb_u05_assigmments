@@ -16,12 +16,90 @@ class BinarySearchTree {
 
   insert(val) {
 
+	const newNode = new Node(val);
+
+	if(!this.root){
+		this.root = newNode;
+		return this;
+	}
+
+	let currentNode = this.root;
+	let currentNodeValue = currentNode.val;
+
+	while(currentNodeValue !== null){
+
+		currentNodeValue = currentNode.val;
+
+		// if (currentNode.left || currentNode.right){ ... }
+			// apparently spent an hour or two stuck on this line of code for some reason and it could NOT be interpreted...
+
+		if(currentNode.left === null || currentNode.right === null){
+				
+			if(val < currentNodeValue)
+				currentNode.left = newNode;
+
+			if(val > currentNodeValue)
+				currentNode.right = newNode;
+			
+			break;
+
+		}else{
+
+			if(val < currentNodeValue)
+				currentNode = currentNode.left;
+
+			if(val > currentNodeValue)
+				currentNode = currentNode.right;
+
+		}
+
+	}
+
+	return this;
+
   }
 
   /** insertRecursively(val): insert a new node into the BST with value val.
    * Returns the tree. Uses recursion. */
 
   insertRecursively(val) {
+
+	const newNode = new Node(val);
+
+	if(!this.root){
+		this.root = newNode;
+		return this;
+	}
+
+	function _insertRecursively(currentNode){
+
+		if(newNode.val < currentNode.val){
+			
+			if(currentNode.left === null){
+				currentNode.left = newNode;
+				return;
+			}
+			
+			_insertRecursively(currentNode.left);
+
+		}
+
+		if(newNode.val > currentNode.val){
+			
+			if(currentNode.right === null){
+				currentNode.right = newNode;
+				return;
+			}
+				
+			_insertRecursively(currentNode.right);
+
+		}
+
+	}
+
+	_insertRecursively(this.root);
+
+	return this;
 
   }
 
@@ -30,12 +108,45 @@ class BinarySearchTree {
 
   find(val) {
 
+	let currentNode = this.root;
+
+	while(currentNode){
+		
+		if(val === currentNode.val)
+			return currentNode;
+		
+		if(val < currentNode.val)
+			currentNode = currentNode.left;
+		
+		if(val > currentNode.val)
+			currentNode = currentNode.right;
+
+	}
+
   }
 
   /** findRecursively(val): search the tree for a node with value val.
    * return the node, if found; else undefined. Uses recursion. */
 
   findRecursively(val) {
+
+	function _findRecursively(currentNode){
+
+		if(val === currentNode.val)
+			return currentNode;
+
+		if(val < currentNode.val && currentNode.left)
+			_findRecursively(currentNode.left);
+
+		if(val > currentNode.val && currentNode.right)
+			_findRecursively(currentNode.right);
+
+		return;
+
+	}
+
+	console.log(_findRecursively(this.root).val)
+	return _findRecursively(this.root);
 
   }
 
