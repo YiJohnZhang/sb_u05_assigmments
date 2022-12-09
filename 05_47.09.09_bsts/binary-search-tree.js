@@ -1,3 +1,5 @@
+const Queue = require('./helpers_05_47.05.09_stacks_&_queues/queue');
+
 class Node {
   constructor(val, left = null, right = null) {
     this.val = val;
@@ -129,7 +131,24 @@ class BinarySearchTree {
    * return the node, if found; else undefined. Uses recursion. */
 
   findRecursively(val) {
- 
+
+	function _findRecursively(currentNode){
+
+		if(!currentNode)
+			return;
+		
+		if(val === currentNode.val)
+			return currentNode
+
+		if(val < currentNode.val)
+			return _findRecursively(currentNode.left);
+
+		if(val > currentNode.val)
+			return _findRecursively(currentNode.right)
+
+	}
+
+	return _findRecursively(this.root);
 
   }
 
@@ -138,12 +157,51 @@ class BinarySearchTree {
 
   dfsPreOrder() {
 
+	let visitedArrayValues = [];
+
+	function _dfsPreOrder(currentNode){
+		// pre-order: parent, left, right
+
+		visitedArrayValues.push(currentNode.val)
+
+		if(currentNode.left)
+			_dfsPreOrder(currentNode.left);
+		
+		if(currentNode.right)
+			_dfsPreOrder(currentNode.right);
+
+	}
+
+	_dfsPreOrder(this.root);
+
+	return visitedArrayValues;
+
+
   }
 
   /** dfsInOrder(): Traverse the array using in-order DFS.
    * Return an array of visited nodes. */
 
   dfsInOrder() {
+
+	let visitedArrayValues = [];
+
+	function _dfsInOrder(currentNode){
+		// in-order: left, parent, right
+
+		if(currentNode.left)
+			_dfsInOrder(currentNode.left);
+
+		visitedArrayValues.push(currentNode.val);
+
+		if(currentNode.right)
+			_dfsInOrder(currentNode.right);
+
+	}
+
+	_dfsInOrder(this.root);
+
+	return visitedArrayValues;
 
   }
 
@@ -152,12 +210,52 @@ class BinarySearchTree {
 
   dfsPostOrder() {
 
+	let visitedArrayValues = [];
+
+	function _dfsPostOrder(currentNode){
+		// post-order: left, right, parent
+
+		if(currentNode.left)
+			_dfsPostOrder(currentNode.left);
+		
+		if(currentNode.right)
+			_dfsPostOrder(currentNode.right);
+
+		visitedArrayValues.push(currentNode.val);
+
+	}
+
+	_dfsPostOrder(this.root);
+
+	return visitedArrayValues;
+
   }
 
   /** bfs(): Traverse the array using BFS.
    * Return an array of visited nodes. */
 
   bfs() {
+
+	let visitedArrayValues = [];
+
+	const visitQueue = new Queue();
+	visitQueue.enqueue(this.root);
+
+	while(visitQueue.size > 0){
+
+		const currentNode = visitQueue.dequeue();
+		
+		if(currentNode.left)
+			visitQueue.enqueue(currentNode.left);
+		
+		if(currentNode.right)
+			visitQueue.enqueue(currentNode.right);
+		
+		visitedArrayValues.push(currentNode.val);
+
+	}
+
+	return visitedArrayValues;
 
   }
 
