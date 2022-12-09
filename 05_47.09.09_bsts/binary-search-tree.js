@@ -129,24 +129,7 @@ class BinarySearchTree {
    * return the node, if found; else undefined. Uses recursion. */
 
   findRecursively(val) {
-
-	function _findRecursively(currentNode){
-
-		if(val === currentNode.val)
-			return currentNode;
-
-		if(val < currentNode.val && currentNode.left)
-			_findRecursively(currentNode.left);
-
-		if(val > currentNode.val && currentNode.right)
-			_findRecursively(currentNode.right);
-
-		return;
-
-	}
-
-	console.log(_findRecursively(this.root).val)
-	return _findRecursively(this.root);
+ 
 
   }
 
@@ -178,28 +161,28 @@ class BinarySearchTree {
 
   }
 
-  /** Further Study!
-   * remove(val): Removes a node in the BST with the value val.
-   * Returns the removed node. */
+//   /** Further Study!
+//    * remove(val): Removes a node in the BST with the value val.
+//    * Returns the removed node. */
 
-  remove(val) {
+//   remove(val) {
 
-  }
+//   }
 
-  /** Further Study!
-   * isBalanced(): Returns true if the BST is balanced, false otherwise. */
+//   /** Further Study!
+//    * isBalanced(): Returns true if the BST is balanced, false otherwise. */
 
-  isBalanced() {
+//   isBalanced() {
 
-  }
+//   }
 
-  /** Further Study!
-   * findSecondHighest(): Find the second highest value in the BST, if it exists.
-   * Otherwise return undefined. */
+//   /** Further Study!
+//    * findSecondHighest(): Find the second highest value in the BST, if it exists.
+//    * Otherwise return undefined. */
 
-  findSecondHighest() {
+//   findSecondHighest() {
     
-  }
+//   }
 }
 
 module.exports = BinarySearchTree;
